@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import Header from "components/Header"
+import { createMuiTheme, createStyles, makeStyles, Theme, ThemeProvider } from "@material-ui/core"
+import "styles/styles.scss"
+import Main from "routes/Main"
 
-function App() {
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: "Noto Sans KR, sans-serif",
+  },
+})
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    app: {
+      backgroundColor: "#f0f0f0",
+      minHeight: "100vh",
+    },
+  })
+)
+
+const App = () => {
+  const classes = useStyles()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <div className={classes.app}>
+        <Header />
+        <Main />
+      </div>
+    </ThemeProvider>
+  )
 }
 
-export default App;
+export default App
