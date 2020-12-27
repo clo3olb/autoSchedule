@@ -1,8 +1,9 @@
 import React from "react"
 import Header from "components/Header"
-import { createMuiTheme, createStyles, makeStyles, Theme, ThemeProvider } from "@material-ui/core"
+import { Box, createMuiTheme, Grid, ThemeProvider } from "@material-ui/core"
 import "styles/styles.scss"
 import Main from "routes/Main"
+import useStyles from "hooks/useStyles"
 
 const theme = createMuiTheme({
   typography: {
@@ -10,23 +11,14 @@ const theme = createMuiTheme({
   },
 })
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    app: {
-      backgroundColor: "#f0f0f0",
-      minHeight: "100vh",
-    },
-  })
-)
-
 const App = () => {
   const classes = useStyles()
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.app}>
+      <Box className={classes.app}>
         <Header />
         <Main />
-      </div>
+      </Box>
     </ThemeProvider>
   )
 }

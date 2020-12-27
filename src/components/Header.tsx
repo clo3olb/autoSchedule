@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Stepper, Step, StepLabel, Button, Typography, Grid } from "@material-ui/core"
+import { Box, Stepper, Step, StepLabel, Button, Typography, Grid, Container, AppBar } from "@material-ui/core"
 import useStyles from "hooks/useStyles"
 
 const Header = () => {
@@ -24,24 +24,32 @@ const Header = () => {
   }
 
   return (
-    <Box>
-      <Grid container alignItems="center" justify="space-between" className={classes.padding}>
-        <Typography variant="h6" className={classes.title}>
-          AutoSchedule{activeStep}
-        </Typography>
-        <Button onClick={handleBack}>Back</Button>
-        <Button onClick={handleNext} color="primary">
-          Next
-        </Button>
-      </Grid>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-    </Box>
+    <AppBar position="sticky" className={classes.header}>
+      <Container>
+        <Grid
+          container
+          style={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 0 }}
+          alignItems="center"
+          justify="space-between"
+          className={classes.padding}
+        >
+          <Typography variant="h6" className={classes.title} color="textPrimary">
+            AutoSchedule
+          </Typography>
+          <Button onClick={handleBack}>Back</Button>
+          <Button onClick={handleNext} color="primary">
+            Next
+          </Button>
+        </Grid>
+        <Stepper activeStep={activeStep} style={{ paddingLeft: 0, paddingRight: 0 }}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Container>
+    </AppBar>
   )
 }
 
